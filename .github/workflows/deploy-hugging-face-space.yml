@@ -1,0 +1,104 @@
+name: Deploy to Hugging Face Space
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: deploy-hugging-face-space
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  HF_SPACE: nico-martin/open-jev-demo
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.1.1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Write Hugging Face Space metadata
+        run: |
+          cat > dist/README.md << 'EOF'
+          ---
+          title: open-jev Demo
+          emoji: 🧭
+          # App palette (src/index.css): lime #dbf168 -> yellow, periwinkle #688af1 -> blue
+          colorFrom: yellow
+          colorTo: blue
+          sdk: static
+          pinned: false
+          license: apache-2.0
+          short_description: Typed decisions in the browser with open-jev and Kev models
+          models:
+            - onnx-community/kev-0.6b-ONNX
+            - onnx-community/kev-4b-ONNX
+            - onnx-community/open-jev-deberta-v3-large-ONNX
+          ---
+
+          # open-jev Demo
+
+          Interactive demo for the [`open-jev`](https://www.npmjs.com/package/open-jev) npm package: typed decisions running locally in your browser via [Transformers.js](https://github.com/huggingface/transformers.js).
+
+          ## Models
+
+          - [onnx-community/kev-0.6b-ONNX](https://huggingface.co/onnx-community/kev-0.6b-ONNX)
+          - [onnx-community/kev-4b-ONNX](https://huggingface.co/onnx-community/kev-4b-ONNX)
+          - [onnx-community/open-jev-deberta-v3-large-ONNX](https://huggingface.co/onnx-community/open-jev-deberta-v3-large-ONNX)
+
+          > **Contributing:** This Space is deployed from the [GitHub repository](https://github.com/${{ github.repository }}). Please open issues and pull requests there.
+          EOF
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "The HF_TOKEN repository secret is required."
+            exit 1
+          fi
+
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git lfs install
+
+          GIT_LFS_SKIP_SMUDGE=1 git clone \
+            "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" \
+            hf-space \
+            --depth 1
+
+          rsync --archive --delete --exclude=.git dist/ hf-space/
+
+          git -C hf-space lfs track "*.wasm"
+          git -C hf-space add -A
+
+          if git -C hf-space diff --cached --quiet; then
+            echo "No changes to deploy."
+          else
+            git -C hf-space commit -m "Deploy from GitHub @ ${{ github.sha }}"
+            git -C hf-space push origin HEAD:main
+          fi
