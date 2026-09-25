@@ -6,7 +6,7 @@ Interactive demo for the [`open-jev`](https://www.npmjs.com/package/open-jev) np
 
 **Install screen**
 
-- Pick one of the three built-in models (`kev-0.6b`, `open-jev`, `kev-4b`) and a weight variant.
+- Pick one of the four built-in models (`kev-0.6b`, `open-jev`, `gliner2-decide`, `kev-4b`) and a weight variant.
 - See device, cache status and download size before loading (`OpenJev.info()`), then load with a live progress bar.
 - Two short explainers: what Jev / System One models are, and what the `open-jev` package does.
 
