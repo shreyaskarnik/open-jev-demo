@@ -44,16 +44,9 @@ const ticketRouting: DemoDefinition = {
       "critical",
     ]),
     churnRisk: noul(
-      "The customer threatens to cancel or switch to a competitor.",
-      {
-        false: "The customer wants help and shows no sign of leaving.",
-        true: "The customer says they may cancel or move to a competitor.",
-      }
+      "The customer threatens to cancel or switch to a competitor."
     ),
-    resolved: noul("The customer says the problem is already solved.", {
-      false: "The customer still has the problem.",
-      true: "The customer says the problem is fixed and nothing is left to do.",
-    }),
+    resolved: noul("The customer says the problem is already solved."),
   },
   labels: {
     team: "Team",
@@ -130,8 +123,10 @@ const ticket = await jev.decide(message, {
     "high",
     "critical",
   ]),
-  churnRisk: noul("The customer threatens to cancel or switch to a competitor.", { false: "The customer wants help and shows no sign of leaving.", true: "The customer says they may cancel or move to a competitor." }),
-  resolved: noul("The customer says the problem is already solved.", { false: "The customer still has the problem.", true: "The customer says the problem is fixed and nothing is left to do." }),
+  churnRisk: noul(
+    "The customer threatens to cancel or switch to a competitor."
+  ),
+  resolved: noul("The customer says the problem is already solved."),
 });
 
 if (ticket.resolved.answer) closeTicket();
