@@ -55,6 +55,18 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     tone: "periwinkle",
   },
   {
+    alias: "julia-1",
+    name: "Julia 1",
+    base: "mmBERT-small (Supersonic Labs)",
+    repo: "SupersonicLabs/Julia-1-ONNX",
+    context: 1024,
+    dtypes: ["auto", "fp32"],
+    sizes: { fp32: "0.58 GB" },
+    note: "Supersonic Labs' multilingual decision model. Scores each question on its own, 2 to 20 options.",
+    tag: "Multilingual",
+    tone: "lavender",
+  },
+  {
     alias: "kev-4b",
     name: "Kev 4B",
     base: "Qwen3-4B-Base",

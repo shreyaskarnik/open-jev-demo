@@ -58,6 +58,8 @@ jobs:
             - onnx-community/kev-0.6b-ONNX
             - onnx-community/kev-4b-ONNX
             - onnx-community/open-jev-deberta-v3-large-ONNX
+            - SupersonicLabs/Julia-1-ONNX
+            - SupersonicLabs/Julia-1
           ---
 
           # open-jev Demo
@@ -69,6 +71,7 @@ jobs:
           - [onnx-community/kev-0.6b-ONNX](https://huggingface.co/onnx-community/kev-0.6b-ONNX)
           - [onnx-community/kev-4b-ONNX](https://huggingface.co/onnx-community/kev-4b-ONNX)
           - [onnx-community/open-jev-deberta-v3-large-ONNX](https://huggingface.co/onnx-community/open-jev-deberta-v3-large-ONNX)
+          - [SupersonicLabs/Julia-1-ONNX](https://huggingface.co/SupersonicLabs/Julia-1-ONNX), the browser export of [SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1)
 
           > **Contributing:** This Space is deployed from the [GitHub repository](https://github.com/${{ github.repository }}). Please open issues and pull requests there.
           EOF
