@@ -70,7 +70,7 @@ export default function PackageCard({ className = "" }: PackageCardProps) {
         >
           Transformers.js
         </a>
-        . It ships four ONNX models, uses WebGPU when available and falls back
+        . It ships five ONNX models, uses WebGPU when available and falls back
         to WebAssembly. Everything stays on the device, and the answers are
         fully typed from the options you pass in.
       </p>

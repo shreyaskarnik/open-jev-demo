@@ -55,6 +55,23 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     tone: "periwinkle",
   },
   {
+    alias: "gliner2-decide",
+    name: "GLiNER2.5-Decide",
+    base: "DeBERTa-v3-large (Fastino)",
+    repo: "onnx-community/GLiNER2.5-Decide-ONNX",
+    context: 512,
+    dtypes: ["auto", "fp16", "q4f16", "q4", "fp32"],
+    sizes: {
+      q4f16: "0.52 GB",
+      q4: "0.89 GB",
+      fp16: "0.87 GB",
+      fp32: "1.74 GB",
+    },
+    note: "Fastino's decision model, trained on 17 operational domains. Descriptions go into the prompt.",
+    tag: "Trained",
+    tone: "periwinkle",
+  },
+  {
     alias: "julia-1",
     name: "Julia 1",
     base: "mmBERT-small (Supersonic Labs)",

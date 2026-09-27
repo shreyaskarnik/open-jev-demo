@@ -1,4 +1,5 @@
 import {
+  BarChart3,
   CheckCircle2,
   CircleDashed,
   Download,
@@ -12,7 +13,7 @@ import { GITHUB_URL, NPM_URL, PACKAGE_VERSION } from "../constants";
 import { Badge } from "../theme";
 import cn from "../utils/classnames";
 
-export type Screen = "install" | "demo";
+export type Screen = "install" | "demo" | "benchmark";
 
 interface TopBarProps {
   screen: Screen;
@@ -90,6 +91,12 @@ export default function TopBar({
             disabled={!demoReady}
             title={demoReady ? undefined : "Load a model first"}
             onClick={() => onNavigate("demo")}
+          />
+          <NavButton
+            icon={<BarChart3 size={16} />}
+            label="Benchmark"
+            active={screen === "benchmark"}
+            onClick={() => onNavigate("benchmark")}
           />
         </nav>
 

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { MODEL_CATALOG } from "../../constants";
 import type { DtypeOption } from "../../constants";
 import { inspectModel, isWebGpuAvailable, loadJev } from "../../lib/jev";
+import { modelFromUrl } from "../../lib/urlModel";
 import { Card, SectionTitle } from "../../theme";
 import cn from "../../utils/classnames";
 import DtypePicker from "./DtypePicker";
@@ -29,7 +30,10 @@ export default function InstallScreen({
   onLoaded,
   className = "",
 }: InstallScreenProps) {
-  const [model, setModel] = useState<ModelAlias>("kev-0.6b");
+  // `?model=julia-1` (or `?julia-1`) preselects a model, e.g. for shared links.
+  const [model, setModel] = useState<ModelAlias>(
+    () => modelFromUrl() ?? "kev-0.6b"
+  );
   const [dtype, setDtype] = useState<DtypeOption>("auto");
   const [infoState, setInfoState] = useState<InfoState | null>(null);
   const [status, setStatus] = useState<LoadStatus>("idle");
