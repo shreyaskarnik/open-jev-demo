@@ -35,14 +35,8 @@ const commentModeration: DemoDefinition = {
       "positive",
       "very positive",
     ]),
-    toxic: noul("Is this comment abusive?", {
-      false: "The comment is civil, even if it disagrees.",
-      true: "The comment insults, harasses or threatens someone.",
-    }),
-    spam: noul("The comment promotes a product, offer or link.", {
-      false: "The comment is a genuine reaction with nothing to sell.",
-      true: "The comment advertises a product, an offer or a link.",
-    }),
+    toxic: noul("Is this comment abusive?"),
+    spam: noul("The comment promotes a product, offer or link."),
   },
   labels: {
     action: "Action",
@@ -113,8 +107,8 @@ const [action, sentiment, toxic, spam] = await jev.decide(comment, [
     "positive",
     "very positive",
   ]),
-  noul("Is this comment abusive?", { false: "The comment is civil, even if it disagrees.", true: "The comment insults, harasses or threatens someone." }),
-  noul("The comment promotes a product, offer or link.", { false: "The comment is a genuine reaction with nothing to sell.", true: "The comment advertises a product, an offer or a link." }),
+  noul("Is this comment abusive?"),
+  noul("The comment promotes a product, offer or link."),
 ]);
 
 action.choice; // "approve" | "needs review" | "remove"
