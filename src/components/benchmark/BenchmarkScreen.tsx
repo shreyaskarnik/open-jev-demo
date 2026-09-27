@@ -315,6 +315,12 @@ export default function BenchmarkScreen({
             models answer with fixed no/yes options.
           </li>
           <li>
+            Off its home ground the yes/no questions are Julia 1's weak spot: on
+            the demo's own messages it answered 18 of 36 clear-cut yes/no
+            questions correctly, about chance, and the outcome descriptions did
+            not help there.
+          </li>
+          <li>
             States are JSON documents, median about 255 tokens. open-jev reads
             the first 256 state tokens and GLiNER2.5-Decide 384, so long states
             are cut for them.
