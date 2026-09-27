@@ -33,8 +33,14 @@ const emailTriage: DemoDefinition = {
       "high",
       "urgent",
     ]),
-    needsReply: noul("The sender expects a personal reply."),
-    isAutomated: noul("This email was sent by an automated system."),
+    needsReply: noul("The sender expects a personal reply.", {
+      false: "No personal answer is needed.",
+      true: "The sender is waiting for a personal answer.",
+    }),
+    isAutomated: noul("This email was sent by an automated system.", {
+      false: "A person wrote this email.",
+      true: "A system, service or mailing list sent this email.",
+    }),
   },
   labels: {
     category: "Category",
@@ -102,8 +108,8 @@ const triage = await jev.decide(email.body, {
     "high",
     "urgent",
   ]),
-  needsReply: noul("The sender expects a personal reply."),
-  isAutomated: noul("This email was sent by an automated system."),
+  needsReply: noul("The sender expects a personal reply.", { false: "No personal answer is needed.", true: "The sender is waiting for a personal answer." }),
+  isAutomated: noul("This email was sent by an automated system.", { false: "A person wrote this email.", true: "A system, service or mailing list sent this email." }),
 });
 
 triage.category.choice; // "billing" | "technical issue" | ...

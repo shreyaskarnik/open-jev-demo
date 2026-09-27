@@ -53,8 +53,14 @@ const leadScoring: DemoDefinition = {
       "mid-market",
       "enterprise",
     ]),
-    budget: noul("The sender mentions a budget or a willingness to pay."),
-    decisionMaker: noul("The sender can make the purchasing decision."),
+    budget: noul("The sender mentions a budget or a willingness to pay.", {
+      false: "Nothing about budget, price or paying.",
+      true: "The sender mentions a budget, pricing or being ready to pay.",
+    }),
+    decisionMaker: noul("The sender can make the purchasing decision.", {
+      false: "Someone else decides on the purchase.",
+      true: "The sender can approve the purchase.",
+    }),
   },
   labels: {
     intent: "Buying intent",
@@ -128,8 +134,8 @@ const lead = await jev.decide(message, {
     "mid-market",
     "enterprise",
   ]),
-  budget: noul("The sender mentions a budget or a willingness to pay."),
-  decisionMaker: noul("The sender can make the purchasing decision."),
+  budget: noul("The sender mentions a budget or a willingness to pay.", { false: "Nothing about budget, price or paying.", true: "The sender mentions a budget, pricing or being ready to pay." }),
+  decisionMaker: noul("The sender can make the purchasing decision.", { false: "Someone else decides on the purchase.", true: "The sender can approve the purchase." }),
 });
 
 // Probabilities are calibrated, so they can be combined into a score.
