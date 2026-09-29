@@ -126,7 +126,7 @@ export default function BenchmarkScreen({
       <div className="flex flex-col gap-2">
         <SectionTitle>Benchmark</SectionTitle>
         <p className="max-w-3xl text-sm text-stone">
-          Five System One models on the same 2,000 typed questions:{" "}
+          Eight System One models on the same 2,000 typed questions:{" "}
           <a
             className="font-semibold text-ink underline"
             href={DATASET_URL}
@@ -303,16 +303,17 @@ export default function BenchmarkScreen({
         <ul className="list-disc space-y-1 pl-5">
           <li>
             This is Julia 1's own evaluation set, from the workflows it was
-            built for. The other models were trained on different domains
-            (open-jev: banking, reviews, Wikipedia yes/no; Kev: ten others;
-            GLiNER2.5-Decide: 17 operational domains). On the demo's short
-            messages the ranking looks different, so measure on your own
-            questions.
+            built for, and Laya typed-decisions was fine-tuned on its training
+            split; base Laya scores 36% on the same questions. The other models
+            were trained on different domains (open-jev: banking, reviews,
+            Wikipedia yes/no; Kev: ten others; GLiNER2.5-Decide: 17 operational
+            domains). On the demo's short messages the ranking looks different,
+            so measure on your own questions.
           </li>
           <li>
-            The noul questions come with a description of each outcome. Only
-            Julia 1 reads them; without them its noul score is 65.2%. The other
-            models answer with fixed no/yes options.
+            The noul questions come with a description of each outcome. Julia 1
+            and the Laya models read them (Julia 1 scores 65.2% on noul without
+            them). The other models answer with fixed no/yes options.
           </li>
           <li>
             Off its home ground the yes/no questions are Julia 1's weak spot: on
@@ -329,7 +330,8 @@ export default function BenchmarkScreen({
           <li>
             Each model ran at its automatic dtype, once. Julia 1's row
             reproduces its model card's CPU numbers exactly (426/600, 542/800,
-            483/600).
+            483/600), and the Laya rows match Laya's card (0.362 base, 0.766
+            typed-decisions).
           </li>
         </ul>
       </Card>

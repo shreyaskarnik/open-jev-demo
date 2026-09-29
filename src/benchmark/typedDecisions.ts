@@ -7,7 +7,8 @@ import type { Answer, Question } from "open-jev";
  * annotator labels. Every model gets the same questions: choice options are
  * the criteria ids with their descriptions, score levels are the rubric in
  * order, noul questions carry their outcome descriptions where the dataset has
- * them (julia-1 reads those; the other models answer with fixed no/yes).
+ * them (julia-1 and the laya models read those; the others answer with fixed
+ * no/yes).
  */
 export const DATASET_URL =
   "https://huggingface.co/datasets/LocalLLaMA/typed-decisions";

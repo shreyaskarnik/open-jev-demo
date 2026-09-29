@@ -18,6 +18,21 @@ export interface BenchmarkRow {
  */
 export const REFERENCE_RUN: readonly BenchmarkRow[] = [
   {
+    // Measured 2026-09-28 at fp16 (fp32 within 0.2 points).
+    alias: "laya-typed-decisions",
+    dtype: "fp16",
+    choice: [437, 600],
+    score: [583, 800],
+    noul: [517, 600],
+    workflows: {
+      agent_trace_observability: [364, 500],
+      customer_service: [383, 500],
+      invoice_processing: [404, 500],
+      security_incidents: [386, 500],
+    },
+    medianMs: 974.6,
+  },
+  {
     alias: "julia-1",
     dtype: "fp32",
     choice: [426, 600],
@@ -87,6 +102,36 @@ export const REFERENCE_RUN: readonly BenchmarkRow[] = [
       security_incidents: [202, 500],
     },
     medianMs: 249.9,
+  },
+  {
+    // Measured 2026-09-28 at fp16 (fp32 within 0.2 points).
+    alias: "laya",
+    dtype: "fp16",
+    choice: [175, 600],
+    score: [261, 800],
+    noul: [290, 600],
+    workflows: {
+      agent_trace_observability: [197, 500],
+      customer_service: [191, 500],
+      invoice_processing: [183, 500],
+      security_incidents: [155, 500],
+    },
+    medianMs: 955.4,
+  },
+  {
+    // Measured 2026-09-28 at fp16 (fp32 within 0.2 points).
+    alias: "laya-multilingual",
+    dtype: "fp16",
+    choice: [178, 600],
+    score: [224, 800],
+    noul: [299, 600],
+    workflows: {
+      agent_trace_observability: [142, 500],
+      customer_service: [211, 500],
+      invoice_processing: [154, 500],
+      security_incidents: [194, 500],
+    },
+    medianMs: 509.3,
   },
 ];
 
