@@ -46,18 +46,19 @@ export const REFERENCE_RUN: readonly BenchmarkRow[] = [
     medianMs: 1590.9,
   },
   {
+    // Re-measured 2026-09-28 at the new 1024-token default (was 512, 48.4%).
     alias: "gliner2-decide",
     dtype: "fp16",
-    choice: [249, 600],
-    score: [355, 800],
-    noul: [364, 600],
+    choice: [290, 600],
+    score: [376, 800],
+    noul: [366, 600],
     workflows: {
       agent_trace_observability: [289, 500],
-      customer_service: [188, 500],
-      invoice_processing: [243, 500],
+      customer_service: [245, 500],
+      invoice_processing: [250, 500],
       security_incidents: [248, 500],
     },
-    medianMs: 347.8,
+    medianMs: 387.5,
   },
   {
     alias: "kev-0.6b",

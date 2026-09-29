@@ -322,8 +322,9 @@ export default function BenchmarkScreen({
           </li>
           <li>
             States are JSON documents, median about 255 tokens. open-jev reads
-            the first 256 state tokens and GLiNER2.5-Decide 384, so long states
-            are cut for them.
+            the first 256 state tokens, so long states are cut for it.
+            GLiNER2.5-Decide reads up to 896 state tokens (1024 in total);
+            raising that to 2048 gave identical results here.
           </li>
           <li>
             Each model ran at its automatic dtype, once. Julia 1's row
