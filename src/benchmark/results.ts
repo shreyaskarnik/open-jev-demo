@@ -47,6 +47,21 @@ export const REFERENCE_RUN: readonly BenchmarkRow[] = [
     medianMs: 190.9,
   },
   {
+    // Measured 2026-10-01 at q8 (q4f16: 58.4%, 1168 of 2000).
+    alias: "strands-decider-2b",
+    dtype: "q8",
+    choice: [337, 600],
+    score: [458, 800],
+    noul: [392, 600],
+    workflows: {
+      agent_trace_observability: [224, 500],
+      customer_service: [347, 500],
+      invoice_processing: [285, 500],
+      security_incidents: [331, 500],
+    },
+    medianMs: 2227.1,
+  },
+  {
     alias: "kev-4b",
     dtype: "q4f16",
     choice: [360, 600],

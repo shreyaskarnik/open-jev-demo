@@ -120,6 +120,18 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     tone: "lavender",
   },
   {
+    alias: "strands-decider-2b",
+    name: "Strands Decider 2B",
+    base: "Qwen3.5-2B-Base (Strands Labs)",
+    repo: "onnx-community/strands-decider-2B-hobson-v19-ONNX",
+    context: 4096,
+    dtypes: ["auto", "q8", "q4f16"],
+    sizes: { q8: "1.80 GB", q4f16: "1.09 GB" },
+    note: "Strands Labs' decider (v19): a Qwen3.5 torso with a pointer head and calibrated temperatures. Scores each question on its own.",
+    tag: "Pointer",
+    tone: "lime",
+  },
+  {
     alias: "kev-4b",
     name: "Kev 4B",
     base: "Qwen3-4B-Base",
@@ -135,6 +147,7 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
 
 export const DTYPE_LABELS: Record<DtypeOption, string> = {
   auto: "Auto",
+  q8: "q8",
   q4f16: "q4f16",
   q4: "q4",
   fp16: "fp16",

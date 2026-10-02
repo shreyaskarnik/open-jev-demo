@@ -1,5 +1,5 @@
 import { Check, Cpu } from "lucide-react";
-import type { ModelAlias } from "open-jev";
+import type { ModelAlias, OpenJevDtype } from "open-jev";
 import { MODEL_CATALOG } from "../../constants";
 import { Badge } from "../../theme";
 import cn from "../../utils/classnames";
@@ -89,7 +89,17 @@ export default function ModelPicker({
                 "text-stone": !selected,
               })}
             >
-              <span className="font-mono">{entry.sizes.q4f16} q4f16</span>
+              {(() => {
+                // The model's default variant: the first dtype after "auto".
+                const dtype = entry.dtypes.find(
+                  (d): d is OpenJevDtype => d !== "auto"
+                );
+                return dtype ? (
+                  <span className="font-mono">
+                    {entry.sizes[dtype]} {dtype}
+                  </span>
+                ) : null;
+              })()}
               <span>·</span>
               <span className="font-mono">
                 {entry.context.toLocaleString()} ctx
