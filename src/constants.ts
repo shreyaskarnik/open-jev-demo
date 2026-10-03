@@ -22,6 +22,11 @@ export interface ModelCatalogEntry {
   note: string;
   tag: string;
   tone: "lime" | "periwinkle" | "lavender";
+  /** Who made it, and the family it is grouped under in the model table. */
+  maker: string;
+  family: string;
+  /** Trained on typed-decisions' own workflows: its benchmark score is not zero-shot. */
+  home?: boolean;
 }
 
 export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
@@ -36,6 +41,8 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Small and fast. The default and the best place to start.",
     tag: "Default",
     tone: "lime",
+    maker: "Kev",
+    family: "Kev",
   },
   {
     alias: "open-jev",
@@ -53,6 +60,8 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Encoder model with a 512-token context. Calibrated temperature.",
     tag: "Encoder",
     tone: "periwinkle",
+    maker: "open-jev",
+    family: "open-jev",
   },
   {
     alias: "gliner2-decide",
@@ -70,6 +79,8 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Fastino's decision model, trained on 17 operational domains. Descriptions go into the prompt.",
     tag: "Trained",
     tone: "periwinkle",
+    maker: "Fastino",
+    family: "GLiNER2",
   },
   {
     alias: "julia-1",
@@ -82,6 +93,9 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Supersonic Labs' multilingual decision model. Scores each question on its own, 2 to 20 options.",
     tag: "Multilingual",
     tone: "lavender",
+    maker: "Supersonic Labs",
+    family: "Julia",
+    home: true,
   },
   {
     alias: "laya",
@@ -94,6 +108,8 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Convai's English decision model with calibrated temperatures. Scores each question on its own.",
     tag: "Calibrated",
     tone: "periwinkle",
+    maker: "Convai",
+    family: "Laya",
   },
   {
     alias: "laya-typed-decisions",
@@ -106,6 +122,9 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Laya fine-tuned on the four typed-decisions workflows, the benchmark's own training data.",
     tag: "Fine-tuned",
     tone: "periwinkle",
+    maker: "Convai",
+    family: "Laya",
+    home: true,
   },
   {
     alias: "laya-multilingual",
@@ -118,6 +137,8 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Laya for 100+ languages. Reads up to 8,192 tokens; ships with 1,024.",
     tag: "Multilingual",
     tone: "lavender",
+    maker: "Convai",
+    family: "Laya",
   },
   {
     alias: "strands-decider-2b",
@@ -130,6 +151,50 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Strands Labs' decider (v19): a Qwen3.5 torso with a pointer head and calibrated temperatures. Scores each question on its own.",
     tag: "Pointer",
     tone: "lime",
+    maker: "Strands Labs",
+    family: "Strands Decider",
+  },
+  {
+    alias: "decision2-kai-0.6b",
+    name: "Decision 2.0 Kai",
+    base: "Qwen3-0.6B-Base (vLLM Semantic Router)",
+    repo: "onnx-community/Decision-2.0-Kai-0.6B-ONNX",
+    context: 8192,
+    dtypes: ["auto", "q8"],
+    sizes: { q8: "0.61 GB" },
+    note: "vLLM Semantic Router's smallest Decision 2.0 model. Candidate head on a Qwen3 torso; one prompt per question.",
+    tag: "Small",
+    tone: "lime",
+    maker: "vLLM Semantic Router",
+    family: "Decision 2.0",
+  },
+  {
+    alias: "decision2-eos-0.8b",
+    name: "Decision 2.0 Eos",
+    base: "Qwen3.5-0.8B (vLLM Semantic Router)",
+    repo: "onnx-community/Decision-2.0-Eos-0.8B-ONNX",
+    context: 16384,
+    dtypes: ["auto", "q8", "q4f16"],
+    sizes: { q8: "0.70 GB", q4f16: "0.44 GB" },
+    note: "Decision 2.0 on Qwen3.5-0.8B. One prompt per question.",
+    tag: "Decision 2.0",
+    tone: "periwinkle",
+    maker: "vLLM Semantic Router",
+    family: "Decision 2.0",
+  },
+  {
+    alias: "decision2-sol-2b",
+    name: "Decision 2.0 Sol",
+    base: "Qwen3.5-2B (vLLM Semantic Router)",
+    repo: "onnx-community/Decision-2.0-Sol-2B-ONNX",
+    context: 16384,
+    dtypes: ["auto", "q8", "q4f16"],
+    sizes: { q8: "1.81 GB", q4f16: "1.10 GB" },
+    note: "Decision 2.0 on Qwen3.5-2B. One prompt per question.",
+    tag: "Decision 2.0",
+    tone: "lavender",
+    maker: "vLLM Semantic Router",
+    family: "Decision 2.0",
   },
   {
     alias: "kev-4b",
@@ -142,6 +207,8 @@ export const MODEL_CATALOG: readonly ModelCatalogEntry[] = [
     note: "Most accurate. Needs a capable GPU and a large download.",
     tag: "Accurate",
     tone: "lavender",
+    maker: "Kev",
+    family: "Kev",
   },
 ];
 

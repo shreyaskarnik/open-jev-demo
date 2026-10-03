@@ -76,6 +76,21 @@ export const REFERENCE_RUN: readonly BenchmarkRow[] = [
     medianMs: 1590.9,
   },
   {
+    // Measured 2026-10-03 at q8.
+    alias: "decision2-sol-2b",
+    dtype: "q8",
+    choice: [301, 600],
+    score: [379, 800],
+    noul: [440, 600],
+    workflows: {
+      agent_trace_observability: [235, 500],
+      customer_service: [295, 500],
+      invoice_processing: [309, 500],
+      security_incidents: [281, 500],
+    },
+    medianMs: 2457.9,
+  },
+  {
     // Re-measured 2026-09-28 at the new 1024-token default (was 512, 48.4%).
     alias: "gliner2-decide",
     dtype: "fp16",
@@ -89,6 +104,36 @@ export const REFERENCE_RUN: readonly BenchmarkRow[] = [
       security_incidents: [248, 500],
     },
     medianMs: 387.5,
+  },
+  {
+    // Measured 2026-10-03 at q8.
+    alias: "decision2-kai-0.6b",
+    dtype: "q8",
+    choice: [258, 600],
+    score: [330, 800],
+    noul: [383, 600],
+    workflows: {
+      agent_trace_observability: [198, 500],
+      customer_service: [283, 500],
+      invoice_processing: [259, 500],
+      security_incidents: [231, 500],
+    },
+    medianMs: 1519.6,
+  },
+  {
+    // Measured 2026-10-03 at q8.
+    alias: "decision2-eos-0.8b",
+    dtype: "q8",
+    choice: [263, 600],
+    score: [294, 800],
+    noul: [335, 600],
+    workflows: {
+      agent_trace_observability: [186, 500],
+      customer_service: [279, 500],
+      invoice_processing: [190, 500],
+      security_incidents: [237, 500],
+    },
+    medianMs: 1226.4,
   },
   {
     alias: "kev-0.6b",

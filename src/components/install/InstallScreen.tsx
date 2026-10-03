@@ -101,7 +101,7 @@ export default function InstallScreen({
   const busy = status === "loading" || status === "ready";
 
   return (
-    <div className={cn("grid gap-6 xl:grid-cols-12", className)}>
+    <div className={cn("grid grid-cols-[minmax(0,1fr)] gap-6 xl:grid-cols-12", className)}>
       <div className="flex flex-col gap-6 xl:col-span-7">
         <div className="animate-fade-up">
           <SectionTitle>Install</SectionTitle>

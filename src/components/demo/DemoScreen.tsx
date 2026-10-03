@@ -88,7 +88,7 @@ export default function DemoScreen({ jev, className = "" }: DemoScreenProps) {
         disabled={running}
       />
 
-      <div key={demoId} className="grid gap-6 xl:grid-cols-12">
+      <div key={demoId} className="grid grid-cols-[minmax(0,1fr)] gap-6 xl:grid-cols-12">
         <div className="flex flex-col gap-4 xl:col-span-7">
           <div className="animate-fade-up flex flex-wrap items-center justify-between gap-3">
             <div>
